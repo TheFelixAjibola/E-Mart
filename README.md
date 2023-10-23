@@ -1,2 +1,2 @@
 # E-Mart
-An Online Store
+An Online Store Built with NodeJS
