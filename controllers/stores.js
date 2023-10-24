@@ -9,17 +9,17 @@ const Index = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-// const Details = (req, res) => {
-//   const id = req.params.id;
+const Details = (req, res) => {
+  const id = req.params.id;
 
-//   Store.findById(id)
-//     .then((result) => {
-//       res.render("stores/details", { stores: result, title: "Store Details" });
-//     })
-//     .catch((err) => {
-//       res.status(404).render("404", { title: "Store Not Found" });
-//     });
-// };
+  Store.findById(id)
+    .then((result) => {
+      res.render("stores/details", { stores: result, title: "Store Details" });
+    })
+    .catch((err) => {
+      res.status(404).render("404", { title: "Store Not Found" });
+    });
+};
 
 const Create = (req, res) => {
   res.render("stores/create", { title: "Create" });
@@ -34,16 +34,18 @@ const Post = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-// const Delete = (req, res) => {
-//   const id = req.params.id;
+const Delete = (req, res) => {
+  const id = req.params.id;
 
-//   Store.findByIdAndDelete(id)
-//     .then((result) => res.json({ redirect: "/stores" }))
-//     .catch((err) => console.log(err));
-// };
+  Store.findByIdAndDelete(id)
+    .then((result) => res.json({ redirect: "/stores" }))
+    .catch((err) => console.log(err));
+};
 
 module.exports = {
   Index,
   Create,
   Post,
+  Details,
+  Delete,
 };

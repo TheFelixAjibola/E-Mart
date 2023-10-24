@@ -3,39 +3,47 @@
   <%- include('../partials/head') %>
   <body>
     <%- include('../partials/nav') %>
+    <div class="container">
+      <h1>Welcome to Our Store</h1>
+      <!-- Display a list of Stores -->
 
-    <h1>Welcome to Our Store</h1>
-    <!-- Display a list of Stores -->
-
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Owner</th>
-          <th>Category</th>
-          <th>Phone Number</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>State</th>
-          <th>Local Government Area</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for (let i = 0; i < store.length; i++) { %>
-        <tr>
-          <td><%= store[i].name %></td>
-          <td><%= store[i].description %></td>
-          <td><%= store[i].owner %></td>
-          <td><%= store[i].category %></td>
-          <td><%= store[i].phone %></td>
-          <td><%= store[i].email %></td>
-          <td><%= store[i].address %></td>
-          <td><%= store[i].state %></td>
-          <td><%= store[i].lga %></td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Name</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Category</th>
+            <th scope="col">Telephone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">State</th>
+            <th scope="col">LGA</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i = 0; i < store.length; i++) { %>
+          <tr>
+            <td scope="row"><%= i+1 %></td>
+            <td><%= store[i].name %></td>
+            <td><%= store[i].owner %></td>
+            <td><%= store[i].category %></td>
+            <td><%= store[i].phone %></td>
+            <td><%= store[i].email %></td>
+            <td><%= store[i].address %></td>
+            <td><%= store[i].state %></td>
+            <td><%= store[i].lga %></td>
+            <th>
+              <a href="/stores/<%= store[i]._id%>" class="delete text-decoration-none"">
+                <i class="fas fa-eye" aria-hidden="true"></i>
+              </a>
+            </th>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <%- include('../partials/footer.ejs')%>
+    </div>
   </body>
 </html>

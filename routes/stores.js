@@ -8,8 +8,8 @@ router.post("/", store.Post);
 
 router.get("/create", store.Create);
 
-// router.get("/:id", store.Details);
+router.get("/:id", store.Details);
 
-// router.delete("/:id", store.Delete);
+router.delete("/:id", store.Delete);
 
 module.exports = router;

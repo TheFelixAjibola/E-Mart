@@ -3,53 +3,111 @@
   <%- include('../partials/head.ejs')%>
   <body>
     <%- include('../partials/nav.ejs')%>
-    <div class="create-store content">
+    <div class="container">
       <h1>Create a New Store</h1>
+
       <form action="/stores" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
-        <br />
+        <div class="mb-3">
+          <label for="name" class="form-label"> Name </label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Just Protein"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="Description" class="form-label"> Description </label>
+          <textarea
+            class="form-control"
+            id="description"
+            name="description"
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="owner" class="form-label">Owner</label>
+          <input
+            type="text"
+            class="form-control"
+            id="owner"
+            name="owner"
+            placeholder="John Doe"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category"
+            name="category"
+            placeholder="'Clothing,' 'Electronics,' 'Restaurants,' 'Beauty,' etc"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phone"
+            name="phone"
+            placeholder="08012345678"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="name@example.com"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            name="address"
+            placeholder="St. Matthew Street"
+          />
+        </div>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
-        <br />
+        <div class="mb-3">
+          <select
+            class="form-select form-select-sm mb-3"
+            aria-label="Large select example"
+            onchange="selectLGA(this)"
+            id="state"
+            name="state"
+          >
+            <option selected>Select State</option>
+          </select>
 
-        <label for="owner">Owner:</label>
-        <input type="text" id="owner" name="owner" required />
-        <br />
+          <select
+            class="form-select form-select-sm"
+            aria-label="Small select example"
+            id="lga"
+            name="lga"
+          >
+            <option selected>-Select LGA-</option>
+          </select>
+        </div>
 
-        <label for="category">
-          Category ("Clothing," "Electronics," "Restaurants," "Beauty," etc):
-        </label>
-        <input type="text" id="category" name="category" required />
-        <br />
-
-        <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone" required />
-        <br />
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
-        <br />
-
-        <label for="address">Address:</label>
-        <input type="address" id="address" name="address" required />
-        <br />
-
-        <select onchange="selectLGA(this)" id="state" name="state">
-          <option value="" selected="selected">- Select State -</option>
-        </select>
-        <select class="form-control" id="lga" name="lga">
-          <option>Select LGA</option>
-        </select>
-
-        <br />
-
-        <button type="submit">Create Store</button>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-secondary btn-sm mx-auto">
+            Create Store
+          </button>
+        </div>
       </form>
+
+      <%- include('../partials/footer.ejs')%>
     </div>
 
-    <%- include('../partials/footer.ejs')%>
     <script>
       //Fetch all States
       fetch("https://nga-states-lga.onrender.com/fetch")

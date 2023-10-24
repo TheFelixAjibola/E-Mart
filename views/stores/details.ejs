@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs')%>
+  <body>
+    <%- include('../partials/nav.ejs')%>
+
+    <div class="container">
+      <h2><%=stores.name %></h2>
+      <div class="content">
+        <p><%= stores.description %></p>
+        <p><%= stores.owner %></p>
+        <p><%= stores.category %></p>
+        <p><%= stores.phone %></p>
+        <p><%= stores.email %></p>
+        <p><%= stores.address %></p>
+        <p><%= stores.state %></p>
+        <p><%= stores.lga %></p>
+      </div>
+      <a data-doc="<%= stores._id %>" class="delete text-decoration-none">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </a>
+      <%- include('../partials/footer.ejs') %>
+    </div>
+
+    <script>
+      const trashcan = document.querySelector("a.delete");
+
+      trashcan.addEventListener("click", (e) => {
+        const endpoint = `/stores/${trashcan.dataset.doc}`;
+        fetch(endpoint, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => (window.location.href = data.redirect))
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </body>
+</html>
