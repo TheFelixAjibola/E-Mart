@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body>
+    <%- include('../partials/nav') %>
+
+    <h1>Welcome to Our Store</h1>
+    <!-- Display a list of Stores -->
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Owner</th>
+          <th>Category</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>State</th>
+          <th>Local Government Area</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i = 0; i < store.length; i++) { %>
+        <tr>
+          <td><%= store[i].name %></td>
+          <td><%= store[i].description %></td>
+          <td><%= store[i].owner %></td>
+          <td><%= store[i].category %></td>
+          <td><%= store[i].phone %></td>
+          <td><%= store[i].email %></td>
+          <td><%= store[i].address %></td>
+          <td><%= store[i].state %></td>
+          <td><%= store[i].lga %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>

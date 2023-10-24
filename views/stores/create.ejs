@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/head.ejs')%>
+  <body>
+    <%- include('../partials/nav.ejs')%>
+    <div class="create-store content">
+      <h1>Create a New Store</h1>
+      <form action="/stores" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        <br />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+        <br />
+
+        <label for="owner">Owner:</label>
+        <input type="text" id="owner" name="owner" required />
+        <br />
+
+        <label for="category">
+          Category ("Clothing," "Electronics," "Restaurants," "Beauty," etc):
+        </label>
+        <input type="text" id="category" name="category" required />
+        <br />
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required />
+        <br />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <br />
+
+        <label for="address">Address:</label>
+        <input type="address" id="address" name="address" required />
+        <br />
+
+        <select onchange="selectLGA(this)" id="state" name="state">
+          <option value="" selected="selected">- Select State -</option>
+        </select>
+        <select class="form-control" id="lga" name="lga">
+          <option>Select LGA</option>
+        </select>
+
+        <br />
+
+        <button type="submit">Create Store</button>
+      </form>
+    </div>
+
+    <%- include('../partials/footer.ejs')%>
+    <script>
+      //Fetch all States
+      fetch("https://nga-states-lga.onrender.com/fetch")
+        .then((res) => res.json())
+        .then((data) => {
+          let x = document.getElementById("state");
+          for (let index = 0; index < Object.keys(data).length; index++) {
+            let option = document.createElement("option");
+            option.text = data[index];
+            option.value = data[index];
+            x.add(option);
+          }
+        });
+      //Fetch Local Goverments based on selected state
+      const selectLGA = (target) => {
+        var state = target.value;
+        fetch("https://nga-states-lga.onrender.com/?state=" + state)
+          .then((res) => res.json())
+          .then((data) => {
+            let x = document.getElementById("lga");
+
+            let select = document.getElementById("lga");
+            let length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+              select.options[i] = null;
+            }
+            for (let index = 0; index < Object.keys(data).length; index++) {
+              var option = document.createElement("option");
+              option.text = data[index];
+              option.value = data[index];
+              x.add(option);
+            }
+          });
+      };
+
+      module.exports = selectLGA;
+    </script>
+  </body>
+</html>
