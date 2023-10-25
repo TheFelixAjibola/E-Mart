@@ -2,7 +2,7 @@ const Store = require("../models/stores");
 
 const Index = (req, res) => {
   Store.find()
-    .sort({ createsAt: -1 })
+    .sort({ createdAt: 1 })
     .then((result) => {
       res.render("stores/index", { title: "All Stores", store: result });
     })
