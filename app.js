@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 
 const store = require("./routes/stores");
 
+const port = process.env.PORT || 3000;
+
 // Set the view engine to EJS
 app.set("view engine", "ejs");
 
@@ -17,7 +19,11 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => app.listen(3000))
+  .then(() =>
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    })
+  )
   .catch((err) => console.log(err));
 
 // middleware and static files
